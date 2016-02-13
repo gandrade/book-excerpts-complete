@@ -1,0 +1,26 @@
+{
+    "bookexcerptsApp": {
+        "excerpt" : {
+            "home": {
+                "title": "Excerpts",
+                "createLabel": "Créer un nouveau Excerpt",
+                "createOrEditLabel": "Créer ou éditer un Excerpt",
+                "search": "Search for Excerpt"
+            },
+            "created": "Un nouveau Excerpt a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Excerpt avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Excerpt avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Excerpt {{ id }} ?"
+            },
+            "detail": {
+                "title": "Excerpt"
+            },
+            "excerpt": "Excerpt",
+            "createdDate": "CreatedDate",
+            "user": "User",
+            "book": "Book"
+        }
+    }
+}
+

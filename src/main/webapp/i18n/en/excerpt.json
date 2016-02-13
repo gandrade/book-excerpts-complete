@@ -1,0 +1,25 @@
+{
+    "bookexcerptsApp": {
+        "excerpt" : {
+            "home": {
+                "title": "Excerpts",
+                "createLabel": "Create a new Excerpt",
+                "createOrEditLabel": "Create or edit a Excerpt",
+                "search": "Search for Excerpt"
+            },
+            "created": "A new Excerpt is created with identifier {{ param }}",
+            "updated": "A Excerpt is updated with identifier {{ param }}",
+            "deleted": "A Excerpt is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Excerpt {{ id }}?"
+            },
+            "detail": {
+                "title": "Excerpt"
+            },
+            "excerpt": "Excerpt",
+            "createdDate": "CreatedDate",
+            "user": "User",
+            "book": "Book"
+        }
+    }
+}

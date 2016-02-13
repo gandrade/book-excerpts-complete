@@ -1,0 +1,27 @@
+{
+    "bookexcerptsApp": {
+        "book" : {
+            "home": {
+                "title": "Books",
+                "createLabel": "Créer un nouveau Book",
+                "createOrEditLabel": "Créer ou éditer un Book",
+                "search": "Search for Book"
+            },
+            "created": "Un nouveau Book a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Book avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Book avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Book {{ id }} ?"
+            },
+            "detail": {
+                "title": "Book"
+            },
+            "title": "Title",
+            "isbn": "Isbn",
+            "edition": "Edition",
+            "picture": "Picture",
+            "author": "Author"
+        }
+    }
+}
+

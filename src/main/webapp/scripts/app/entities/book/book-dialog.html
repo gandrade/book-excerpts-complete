@@ -1,0 +1,97 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myBookLabel" translate="bookexcerptsApp.book.home.createOrEditLabel">Create or edit a Book</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="book.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="bookexcerptsApp.book.title" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="book.title"
+                    required />
+            <div ng-show="editForm.title.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.title.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="bookexcerptsApp.book.isbn" for="field_isbn">Isbn</label>
+            <input type="text" class="form-control" name="isbn" id="field_isbn"
+                    ng-model="book.isbn"
+                    required ng-maxlength="13" />
+            <div ng-show="editForm.isbn.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isbn.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.isbn.$error.maxlength" translate="entity.validation.maxlength" translate-value-max="13">
+                    This field cannot be longer than 13 characters.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="bookexcerptsApp.book.edition" for="field_edition">Edition</label>
+            <input type="text" class="form-control" name="edition" id="field_edition"
+                    ng-model="book.edition"
+                     />
+        </div>
+        <div class="form-group" ngf-drop ngf-change="setPicture($file, book)" ngf-pattern="'image/*'">
+            <label class="control-label" translate="bookexcerptsApp.book.picture" for="field_picture">Picture</label>
+            <div>
+                <img data-ng-src="{{'data:' + book.pictureContentType + ';base64,' + book.picture}}" style="max-height: 100px;" ng-if="book.picture"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{book.pictureContentType}} {{byteSize(book.picture)}}</span>
+                    <button ng-click="book.picture=null;book.pictureContentType=null;"
+                            ng-if="book.picture"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setPicture($file, book)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="picture" id="field_picture"
+                    ng-model="book.picture"
+                    required maxbytes="5000000" />
+            <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                    ng-model="book.pictureContentType" />
+            <div ng-show="editForm.picture.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.picture.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.picture.$error.maxbytes" translate="entity.validation.maxbytes" translate-value-max="5000000">
+                    This field cannot be more than 5000000.
+                </p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label translate="bookexcerptsApp.book.author" for="field_author">author</label>
+            <select class="form-control" id="field_author" multiple name="author" ng-model="book.authors" ng-options="author as author.name for author in authors track by author.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

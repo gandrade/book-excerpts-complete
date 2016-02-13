@@ -1,0 +1,71 @@
+
+<form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="clear()">&times;</button>
+        <h4 class="modal-title" id="myAuthorLabel" translate="bookexcerptsApp.author.home.createOrEditLabel">Create or edit a Author</h4>
+    </div>
+    <div class="modal-body">
+        <jh-alert-error></jh-alert-error>
+        <div class="form-group">
+            <label for="id" translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="author.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" translate="bookexcerptsApp.author.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                    ng-model="author.name"
+                    required />
+            <div ng-show="editForm.name.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.name.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="setPicture($file, author)" ngf-pattern="'image/*'">
+            <label class="control-label" translate="bookexcerptsApp.author.picture" for="field_picture">Picture</label>
+            <div>
+                <img data-ng-src="{{'data:' + author.pictureContentType + ';base64,' + author.picture}}" style="max-height: 100px;" ng-if="author.picture"/>
+                <div class="help-block clearfix">
+                    <span class="pull-left">{{author.pictureContentType}} {{byteSize(author.picture)}}</span>
+                    <button ng-click="author.picture=null;author.pictureContentType=null;"
+                            ng-if="author.picture"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="file" ngf-select class="btn btn-default btn-block"
+                        ngf-change="setPicture($file, author)" accept="image/*" translate="entity.action.addimage">
+                    Add image
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="picture" id="field_picture"
+                    ng-model="author.picture"
+                    required maxbytes="5000000" />
+            <input type="hidden" class="form-control" name="pictureContentType" id="field_pictureContentType"
+                    ng-model="author.pictureContentType" />
+            <div ng-show="editForm.picture.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.picture.$error.required" translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                   ng-show="editForm.picture.$error.maxbytes" translate="entity.validation.maxbytes" translate-value-max="5000000">
+                    This field cannot be more than 5000000.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

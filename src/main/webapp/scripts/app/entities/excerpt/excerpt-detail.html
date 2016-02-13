@@ -1,0 +1,54 @@
+
+<div>
+    <h2><span translate="bookexcerptsApp.excerpt.detail.title">Excerpt</span> {{excerpt.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="bookexcerptsApp.excerpt.excerpt">Excerpt</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{excerpt.excerpt}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bookexcerptsApp.excerpt.createdDate">CreatedDate</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{excerpt.createdDate | date:'medium'}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bookexcerptsApp.excerpt.user">user</span>
+                </td>
+                <td>
+                    {{excerpt.user.login}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bookexcerptsApp.excerpt.book">book</span>
+                </td>
+                <td>
+                    <a class="form-control-static" ui-sref="book.detail({id:excerpt.book.id})">{{excerpt.book.title}}</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>
